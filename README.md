@@ -1,29 +1,29 @@
 # todolist
 
 ## Project setup
+Для запуска проекта в дев версии необходимо его скачать и после в терминале ввести команду для запуска dev версии используя следующие команды:
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 # Comments
+
+Затраченное время на реализацию - 25 часов.
 
 В данном приложении я выбрала не передавать данные через ```props```,
 а получать их напрямую из ```vuex store``` в компоненте, так как в данном приложении они не переиспользуются.
+
+# Сделано
+    - добавление туду айтемов на enter и submit
+    - drag and drop туду айтемов
+    - редактирование и удаление туду айтемов
+    - progress bars
+    - все фильтры
+    - Check all и Remove completed
+    - хранение данных в сторонней REST (использую Firebase Runtime Database)
+
+# Не сделано
+    - темная тема (не хватило времени)
+    - переход на Composition API (не хватило времени)
