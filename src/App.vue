@@ -5,9 +5,7 @@
         <img src="@/assets/pic1.png">
       </div>
       <h1 class="todo-window__header">Today I need to</h1>
-
       <TodoItemForm/>
-
       <TodoList v-if="todos.length > 0 || !isLoading"/>
       <div class="todo-window__loading-message" v-else-if="isLoading">
         <span>is loading...</span>

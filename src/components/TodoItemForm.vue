@@ -9,17 +9,17 @@
           @focus="isInputFocused = true"
           @blur="isInputFocused = false"
       >
-      <filter-button v-show="todo.text.length" :staticBtn="true" @click="addNewTodoItem">Submit</filter-button>
+      <default-button v-show="todo.text.length" :staticBtn="true" @click="addNewTodoItem">Submit</default-button>
     </form>
   </div>
 </template>
 
 <script>
 import {mapActions} from "vuex";
-import FilterButton from "@/components/UI/FilterButton.vue";
+import DefaultButton from "@/components/UI/DefaultButton.vue";
 
 export default {
-  components: {FilterButton},
+  components: {DefaultButton},
   data() {
     return {
       todo:{

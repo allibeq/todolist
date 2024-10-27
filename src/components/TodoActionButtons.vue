@@ -1,18 +1,18 @@
 <template>
   <div class="action-buttons">
-    <filter-button v-if="countActive" class="action-buttons__action" @click="checkAllTodos">Check all</filter-button>
+    <default-button v-if="countActive" class="action-buttons__action" @click="checkAllTodos">Check all</default-button>
     <TodoFilter class="action-buttons__sort-btn"/>
-    <filter-button v-if="countCompleted" class="action-buttons__action" @click="removeCompleted">Clear completed</filter-button>
+    <default-button v-if="countCompleted" class="action-buttons__action" @click="removeCompleted">Clear completed</default-button>
   </div>
 </template>
 
 <script>
-import FilterButton from "@/components/UI/FilterButton.vue";
+import DefaultButton from "@/components/UI/DefaultButton.vue";
 import TodoFilter from "@/components/TodoFilter.vue";
 import {mapState, mapActions, mapGetters} from "vuex";
 
 export default {
-  components: {TodoFilter, FilterButton},
+  components: {DefaultButton, TodoFilter},
   methods: {
     ...mapActions({
       updateAllTodosCompleted: 'todos/updateAllTodosCompleted',

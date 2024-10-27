@@ -8,7 +8,7 @@
 <script>
 
 export default {
- name: 'filter-button',
+ name: 'default-button',
   props: {
    checked: {
      type: Boolean,

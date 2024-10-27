@@ -1,5 +1,5 @@
-import FilterButton from "@/components/UI/FilterButton.vue";
+import DefaultButton from "@/components/UI/DefaultButton.vue";
 
 export default [
-    FilterButton
+    DefaultButton
 ]

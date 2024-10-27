@@ -89,9 +89,7 @@ export default {
   justify-content: space-between;
   padding: 10px;
   margin: 10px 0;
-  //border: none;
   height: 25px;
-
 
   &__container {
     display: flex;

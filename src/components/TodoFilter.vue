@@ -1,17 +1,17 @@
 <template>
   <div class="sorting-button-container">
-    <filter-button v-if="todos.length" :checked="selectedSort === 'all'" @click="changeSorting('all')">All</filter-button>
-    <filter-button v-if="countActive && countCompleted" :checked="selectedSort === 'active'" @click="changeSorting('active')">Active</filter-button>
-    <filter-button v-if="countCompleted && countActive" :checked="selectedSort === 'completed'" @click="changeSorting('completed')">Completed</filter-button>
+    <default-button v-if="todos.length" :checked="selectedSort === 'all'" @click="changeSorting('all')">All</default-button>
+    <default-button v-if="countActive && countCompleted" :checked="selectedSort === 'active'" @click="changeSorting('active')">Active</default-button>
+    <default-button v-if="countCompleted && countActive" :checked="selectedSort === 'completed'" @click="changeSorting('completed')">Completed</default-button>
   </div>
 </template>
 
 <script>
-import FilterButton from "@/components/UI/FilterButton.vue";
+import DefaultButton from "@/components/UI/DefaultButton.vue";
 import {mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
-  components: {FilterButton},
+  components: {DefaultButton},
   methods: {
     ...mapMutations({
       setSelectedSort: 'todos/setSelectedSort'

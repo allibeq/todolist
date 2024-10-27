@@ -74,18 +74,20 @@ export const todoModule = {
                 commit("setIsLoading", true);
                 const todos = [];
                 const response = await axios.get(BASE_URL);
-                const keys = Object.keys(response.data);
-                keys.forEach((key) => {
-                    const todo = {
-                        id: key,
-                        text: response.data[key].text,
-                        completed: response.data[key].completed,
-                        sortIndex: response.data[key].sortIndex
-                    };
-                    todos.push(todo);
-                });
-                const sortedTodos = todos.sort((a, b) => a.sortIndex - b.sortIndex)
-                commit('setTodos', sortedTodos);
+                if (response.data) {
+                    const keys = Object.keys(response.data);
+                    keys.forEach((key) => {
+                        const todo = {
+                            id: key,
+                            text: response.data[key].text,
+                            completed: response.data[key].completed,
+                            sortIndex: response.data[key].sortIndex
+                        };
+                        todos.push(todo);
+                    });
+                    const sortedTodos = todos.sort((a, b) => a.sortIndex - b.sortIndex)
+                    commit('setTodos', sortedTodos);
+                }
             } catch (error) {
                 console.error(`Error during fetching data: ${error.message}`);
             } finally {
@@ -132,20 +134,20 @@ export const todoModule = {
                 console.error(`Failed to update text task: ${error.message}`);
             }
         },
-        // this may be a problem for a large number of queries,
-        // but for the test task I chose this solution method
-        async updateAllTodosCompleted({ commit, state, dispatch }) {
+        async updateAllTodosCompleted({ commit, state }) {
+            const requestBody = {}
+            state.todos.forEach((value) => {
+                requestBody[`${value.id}/completed`] = true;
+            });
             try {
-                await Promise.all(
-                    state.todos.map(todo => {
-                        return dispatch('updateCompletedStatus', { todoId: todo.id, completed: true })
-                    })
-                );
+                await axios.patch(BASE_URL, requestBody);
                 commit('setCompleteStatusForAll', true);
             } catch (error) {
                 console.error(`Failed to update complete status: ${error.message}`);
             }
         },
+        // this may be a problem for a large number of queries,
+        // but for the test task I chose this solution method
         async removeAllCompletedTodos({commit, dispatch, getters}) {
             try {
                 await Promise.all(
