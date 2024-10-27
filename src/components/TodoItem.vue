@@ -62,7 +62,7 @@ export default {
       this.editText = this.todo.text;
       this.$nextTick(() => {
         const input = this.$refs.editInput;
-        if (input && input.length > 0) {
+        if (input) {
           input.focus();
         }
       });
