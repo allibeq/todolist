@@ -146,16 +146,14 @@ export const todoModule = {
                 console.error(`Failed to update complete status: ${error.message}`);
             }
         },
-        // this may be a problem for a large number of queries,
-        // but for the test task I chose this solution method
-        async removeAllCompletedTodos({commit, dispatch, getters}) {
+        async removeAllCompletedTodos({commit, state}) {
+            const requestBody = {}
+            state.todos.forEach((value) => {
+                requestBody[`${value.id}`] = null;
+            });
             try {
-                await Promise.all(
-                    getters.getCompleted.map(todo => {
-                        return dispatch('removeTodoItem', todo.id);
-                    })
-                );
-                commit('removeAllCompletedTodos');
+                await axios.patch(BASE_URL, requestBody);
+                commit('removeAllCompletedTodos', true);
             } catch (error) {
                 console.error(`Failed to remove all complete tasks: ${error.message}`);
             }
