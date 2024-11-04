@@ -110,7 +110,6 @@ export default {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     max-width: 100%;
-    overflow: scroll;
     flex-grow: 1;
     font-size: 14px;
     color: #202427;
